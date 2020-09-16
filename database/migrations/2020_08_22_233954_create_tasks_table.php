@@ -14,11 +14,11 @@ class CreateTasksTable extends Migration
     public function up()
     {
         Schema::create('tasks', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('folder_id')->unsigned();
+            $table->bigIncrements('id');
+            $table->bigInteger('folder_id')->unsigned();
             $table->string('title', 100);
             $table->date('due_date');
-            $table->integer('status')->default(1);
+            $table->bigInteger('status')->default(1);
             $table->timestamps();
 
             // 外部キーを設定する
@@ -29,7 +29,7 @@ class CreateTasksTable extends Migration
     /**
      * Reverse the migrations.
      *
-     * @return void
+     * @return void　
      */
     public function down()
     {
