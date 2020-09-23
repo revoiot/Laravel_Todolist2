@@ -17,9 +17,11 @@ class TaskController extends Controller
     
         // 選ばれたフォルダを取得する
         $current_folder = Folder::find($id);
+   
     
         // 選ばれたフォルダに紐づくタスクを取得する
         $tasks = $current_folder->tasks()->get();
+        //dd($tasks);
     
         return view('tasks/index', [
             'folders' => $folders,
