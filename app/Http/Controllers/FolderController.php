@@ -17,19 +17,13 @@ class FolderController extends Controller
 
     public function create(CreateFolder $request)
     {
+        // フォルダモデルのインスタンスを作成する
+        $folder = new Folder();
+        // タイトルに入力値を代入する
+        $folder->title = $request->title;
 
-    $user = User::first();
-    // 最初のレコードを取得
-
-    // フォルダモデルのインスタンスを作成する
-    $folder = new Folder();
-    // タイトルに入力値を代入する
-    $folder->title = $request->title;
-    $folder->user_id = $user->id;
-    // インスタンスの状態をデータベースに書き込む
-    $folder->save();
-
-    // Auth::user()->folders()->save($folder);
+        // ★ ユーザーに紐づけて保存
+        Auth::user()->folders()->save($folder);
 
     return redirect()->route('tasks.index', [
         'id' => $folder->id,
